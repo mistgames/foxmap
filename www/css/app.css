@@ -5,6 +5,8 @@
 /* Styles for the installation button */
 @import "install-button.css";
 @import "shared/headers.css";
+@import "shared/drawer.css";
+@import "shared/icons.css";
 @import "leaflet.css";
 
 /* Your styles here */

@@ -10,7 +10,7 @@ define(function(require) {
 
     var foxmap = require('./map');
     foxmap.init('map')
-      .addOsmMap()
+      .openStreetMap()
       .centerTo(0,0,2)
       .centerToCurrentPosition(true);
 

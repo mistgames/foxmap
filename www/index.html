@@ -11,18 +11,30 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body role="application">
+    <section data-type="sidebar">
+      <header>
+        <menu type="toolbar">
+          <a href="#content"><span class="icon icon-add">add</span></a>
+        </menu>
+        <h1>Options</h1>
+      </header>
+      <nav>
+        <h2>Maps</h2>
+        <ul>
+          <li><a href="#content">OpenStreetMap</a></li>
+          <li><a href="#content">Google</a></li>
+        </ul>
+      </nav>
+    </section>
+
     <section role="region" id="map-view">
       <header>
-        <!--button><span class="icon icon-menu">menu</span></button-->
-        <!--menu type="toolbar">
-          <button><span class="icon icon-add">add</span></button>
-        </menu-->
+        <a href="#content"><span class="icon icon-menu">hide sidebar</span></a>
+        <a href="#map-view"><span class="icon icon-menu">show sidebar</span></a>
         <h1>FoxMap</h1>
       </header>
 
-      <article>
-        <div id="map"></div>
-      </article>
+      <div role="main" id="map"></div>
     </section>
 
 
@@ -30,6 +42,7 @@
          js files. This loads "main.js", which in turn can load other
          files, all handled by require.js:
          http://requirejs.org/docs/api.html#jsfiles -->
+    <!--script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script-->
     <script type="text/javascript"
             data-main="js/init.js"
             src="js/lib/require.js"></script>

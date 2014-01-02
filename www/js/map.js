@@ -1,5 +1,5 @@
-define(['leaflet'], function(L){
-
+define(['leaflet', 'leaflet-google', 'yepnope'],
+function(L, LeafletGoogleLayer){
   var _export = {};
 
   _export.init = function(domId){
@@ -7,7 +7,7 @@ define(['leaflet'], function(L){
     return _export;
   }
 
-  _export.addOsmMap = function(){
+  _export.openStreetMap = function(){
     var layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
     if (_export.currentBaseLayer) {
@@ -15,6 +15,19 @@ define(['leaflet'], function(L){
     }
     _export.currentBaseLayer = layer;
     _export.currentBaseLayer.addTo(_export.map);
+
+    return _export;
+  }
+
+  _export.googleMap = function() {
+    console.log(window.google);
+    var layer = new LeafletGoogleLayer('ROADMAP');
+
+    if (_export.currentBaseLayer) {
+      _export.map.removeLayer(_export.currentBaseLayer);
+    }
+    _export.currentBaseLayer = layer;
+    _export.map.addLayer(_export.currentBaseLayer);
 
     return _export;
   }
@@ -27,7 +40,6 @@ define(['leaflet'], function(L){
 
   _export.centerToCurrentPosition = function(withMarker) {
     if ("geolocation" in navigator) {
-      console.log("Waiting for location ...")
       navigator.geolocation.getCurrentPosition(function(position){
         console.log(position.coords);
         _export.centerTo(
