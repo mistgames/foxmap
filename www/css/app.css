@@ -1,0 +1,32 @@
+
+/* Tip: Use "@import" to add styles instead of adding <link>'s in your
+   HTML, and volo will inline it when building for production */
+
+/* Styles for the installation button */
+@import "install-button.css";
+@import "shared/headers.css";
+@import "leaflet.css";
+
+/* Your styles here */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    background-color: #fff;
+    height: 100%;
+    display: block;
+}
+
+body {
+    overflow: hidden;
+}
+
+section[id=map-view]{
+}
+
+section[id=map-view], article, #map {
+    height: 100%;
+}
+
+#map {
+}
