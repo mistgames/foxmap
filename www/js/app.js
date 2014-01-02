@@ -9,6 +9,9 @@ define(function(require) {
     var $ = require('zepto');
 
     var foxmap = require('./map');
-    foxmap.init('map').addOsmMap().centerTo(32.02, 118.80, 12);
+    foxmap.init('map')
+      .addOsmMap()
+      .centerTo(0,0,2)
+      .centerToCurrentPosition(true);
 
 });

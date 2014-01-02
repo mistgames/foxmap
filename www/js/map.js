@@ -25,5 +25,31 @@ define(['leaflet'], function(L){
     return _export;
   }
 
+  _export.centerToCurrentPosition = function(withMarker) {
+    if ("geolocation" in navigator) {
+      console.log("Waiting for location ...")
+      navigator.geolocation.getCurrentPosition(function(position){
+        console.log(position.coords);
+        _export.centerTo(
+          position.coords.latitude,
+          position.coords.longitude,
+          Math.floor(48 / Math.log10(position.coords.accuracy)));
+
+        if (withMarker) {
+          if (_export.currentPositionMarker) {
+            _export.map.removeLayer(_export.currentPositionMarker);
+          }
+
+          _export.currentPositionMarker = L.circleMarker(
+            [position.coords.latitude, position.coords.longitude],
+            {radius: 30, fill: true, fillColor: "#4C88DB", fillOpacity:0.5}
+          ).addTo(_export.map);
+        }
+      });
+    }
+
+    return _export;
+  }
+
   return _export;
 });
