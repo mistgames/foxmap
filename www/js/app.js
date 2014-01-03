@@ -3,15 +3,21 @@
 // http://requirejs.org/docs/api.html#define
 
 define(function(require) {
-    // Zepto provides nice js and DOM methods (very similar to jQuery,
-    // and a lot smaller):
-    // http://zeptojs.com/
-    var $ = require('zepto');
 
     var foxmap = require('./map');
+    var ebus = require("./eventbus");
+
     foxmap.init('map')
       .openStreetMap()
       .centerTo(0,0,2)
       .centerToCurrentPosition(true);
+
+    ebus.subscribe("map:osm", function(){
+      foxmap.openStreetMap();
+    });
+
+    ebus.subscribe("map:google", function(){
+      foxmap.googleMap();
+    });
 
 });
