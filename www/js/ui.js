@@ -1,4 +1,4 @@
-define(['zepto', './eventbus'], function($, ebus){
+define(['jquery', './eventbus'], function($, ebus){
 
   $("a[href='#map-osm']").click(function(e){
     e.preventDefault();
@@ -10,5 +10,12 @@ define(['zepto', './eventbus'], function($, ebus){
     ebus.publish("map:google");
   });
 
+  ebus.subscribe("loading:start", function(msg){
+    console.log(msg);
+    $("section[role='status'] p").text(msg).parent().show();
+  });
 
+  ebus.subscribe("loading:finish", function(){
+    $("section[role='status']").hide();
+  })
 });

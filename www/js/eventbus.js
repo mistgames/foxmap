@@ -15,7 +15,7 @@ define(function(){
     if (event in events) {
       var args = Array.slice(arguments, 1);
       events[event].forEach(function(cb){
-        cb.call(args);
+        cb.apply(null, args);
       });
     }
   }

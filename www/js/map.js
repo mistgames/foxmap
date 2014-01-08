@@ -1,5 +1,5 @@
-define(['leaflet', 'leaflet-google', 'yepnope'],
-function(L, LeafletGoogleLayer){
+define(['leaflet', 'leaflet-google', './eventbus'],
+function(L, LeafletGoogleLayer, ebus){
   var _export = {};
 
   _export.init = function(domId){
@@ -20,7 +20,6 @@ function(L, LeafletGoogleLayer){
   }
 
   _export.googleMap = function() {
-    console.log(window.google);
     var layer = new LeafletGoogleLayer('ROADMAP');
 
     if (_export.currentBaseLayer) {
@@ -40,8 +39,10 @@ function(L, LeafletGoogleLayer){
 
   _export.centerToCurrentPosition = function(withMarker) {
     if ("geolocation" in navigator) {
+      ebus.publish("loading:start", "Waiting for location.");
+      console.log("waiting for location")
       navigator.geolocation.getCurrentPosition(function(position){
-        console.log(position.coords);
+        ebus.publish("loading:finish");
         _export.centerTo(
           position.coords.latitude,
           position.coords.longitude,

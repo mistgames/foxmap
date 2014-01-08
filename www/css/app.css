@@ -7,6 +7,7 @@
 @import "shared/headers.css";
 @import "shared/drawer.css";
 @import "shared/icons.css";
+@import "shared/status.css";
 @import "leaflet.css";
 
 /* Your styles here */
@@ -31,4 +32,8 @@ section[id=map-view], article, #map {
 }
 
 #map {
+}
+
+section[role=status] {
+    display: none;
 }
